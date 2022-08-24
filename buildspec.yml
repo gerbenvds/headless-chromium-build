@@ -1,0 +1,12 @@
+version: 0.2
+
+
+phases:
+  build:
+    commands:
+      - ./build.sh
+
+artifacts:
+  files:
+    - 'out/*'
+    - 'bin/*'
