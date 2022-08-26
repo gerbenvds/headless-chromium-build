@@ -1,14 +1,4 @@
 set -e
-
-BUILD_BASE=$(pwd)
-CHANNEL=${1:-stable}
-
-VERSION=$(curl -s https://omahaproxy.appspot.com/all.json | \
-  jq -r ".[] | select(.os == \"linux\") | .versions[] | select(.channel == \"$CHANNEL\") | .current_version" \
-)
-
-printf "LANG=en_US.utf-8\nLC_ALL=en_US.utf-8" >> /etc/environment
-
 # install dependencies
 yum groupinstall -y "Development Tools"
 yum install -y \
@@ -21,6 +11,17 @@ yum install -y \
   mod_ssl ncurses-compat-libs nspr-devel nss-devel pam-devel pango-devel \
   pciutils-devel php php-cli pkgconfig pulseaudio-libs-devel python python3 \
   tar zlib zlib-devel
+  
+BUILD_BASE=$(pwd)
+CHANNEL=${1:-stable}
+
+VERSION=$(curl -s https://omahaproxy.appspot.com/all.json | \
+  jq -r ".[] | select(.os == \"linux\") | .versions[] | select(.channel == \"$CHANNEL\") | .current_version" \
+)
+
+printf "LANG=en_US.utf-8\nLC_ALL=en_US.utf-8" >> /etc/environment
+
+
 
 mkdir -p build/chromium
 
