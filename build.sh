@@ -10,7 +10,7 @@ yum install -y \
   libX11-devel libxkbcommon-x11-devel libXScrnSaver-devel libXtst-devel mercurial \
   mod_ssl ncurses-compat-libs nspr-devel nss-devel pam-devel pango-devel \
   pciutils-devel php php-cli pkgconfig pulseaudio-libs-devel python python3 \
-  tar zlib zlib-devel
+  tar zlib zlib-devel jq
   
 BUILD_BASE=$(pwd)
 CHANNEL=${1:-stable}
