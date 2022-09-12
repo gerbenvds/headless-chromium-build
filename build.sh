@@ -28,11 +28,7 @@ mkdir -p build/chromium
 cd build
 
 # install dept_tools
-if [ -d depot_tools ]; then
-	cd depot_tools
-	git pull
-	cd ..
-else
+if [ ! -d depot_tools ]; then
 	git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 fi
 
