@@ -46,6 +46,8 @@ gclient sync --with_branch_heads --jobs 16
 
 cd src
 
+gclient runhooks
+
 # the following is no longer necessary since. left here for nostalgia or something.
 # ref: https://chromium.googlesource.com/chromium/src/+/1824e5752148268c926f1109ed7e5ef1d937609a%5E%21
 # tweak to disable use of the tmpfs mounted at /dev/shm
