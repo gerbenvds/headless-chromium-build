@@ -28,7 +28,13 @@ mkdir -p build/chromium
 cd build
 
 # install dept_tools
-git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+if [ -d depot_tools ]; then
+	cd depot_tools
+	git pull
+	cd ..
+else
+	git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+fi
 
 export PATH="/opt/gtk/bin:$PATH:$BUILD_BASE/build/depot_tools"
 
@@ -39,7 +45,14 @@ cd chromium
 
 # git shallow clone, much quicker than a full git clone; see https://stackoverflow.com/a/39067940/3145038 for more details
 
-git clone --branch "$VERSION" --depth 1 https://chromium.googlesource.com/chromium/src.git
+if [ -d src ]; then
+	cd src
+	git fetch origin "$VERSION" --depth 1
+	git checkout FETCH_HEAD
+	cd ..
+else
+	git clone --branch "$VERSION" --depth 1 https://chromium.googlesource.com/chromium/src.git
+fi
 
 # Checkout all the submodules at their branch DEPS revisions
 gclient sync --with_branch_heads --jobs 16
