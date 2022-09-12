@@ -95,3 +95,4 @@ cd "$BUILD_BASE"
 
 # strip symbols
 strip -o "$BUILD_BASE/bin/headless-chromium" build/chromium/src/out/Headless/headless_shell
+echo $VERSION >> "$BUILD_BASE/bin/version.txt"
