@@ -10,8 +10,8 @@ VERSION=$(curl -s https://omahaproxy.appspot.com/all.json | \
 printf "LANG=en_US.utf-8\nLC_ALL=en_US.utf-8" >> /etc/environment
 
 
-cp .gclient build/chromium/
 mkdir -p build/chromium
+cp .gclient build/chromium/
 
 cd build
 
