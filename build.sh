@@ -73,10 +73,10 @@ mkdir -p out/Headless && \
 # build chromium headless shell
 ninja -C out/Headless headless_shell
 
-cp out/Headless/headless_shell "$BUILD_BASE/bin/headless-chromium-unstripped"
 
-cd "$BUILD_BASE"
 
+mkdir -p "$BUILD_BASE/target"
 # strip symbols
-strip -o "$BUILD_BASE/bin/headless-chromium" build/chromium/src/out/Headless/headless_shell
-echo $VERSION >> "$BUILD_BASE/bin/version.txt"
+cp out/Headless/headless_shell "$BUILD_BASE/target/headless-chromium-unstripped"
+strip -o "$BUILD_BASE/target/headless-chromium" out/Headless/headless_shell
+echo $VERSION >> "$BUILD_BASE/target/version.txt"

@@ -11,11 +11,7 @@ phases:
       - ./build.sh
 
 artifacts:
-  name: $(cat bin/version.txt)-$CODEBUILD_START_TIME
+  name: $(cat target/version.txt)-$CODEBUILD_START_TIME
   files:
-    - 'out/*'
-    - 'bin/*'
+    - 'target/**/*'
 
-cache:
-  paths:
-    - 'build/**/*'
